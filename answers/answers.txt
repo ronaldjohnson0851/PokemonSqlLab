@@ -1,0 +1,21 @@
+SELECT
+    p.name AS Pokemon_Name,
+    t.trainername AS Trainer_Name,
+    pt.pokelevel AS Level,
+    p.primary_type AS Primary_Type,
+    p.secondary_type AS Secondary_Type,
+    pr.name AS Primary_Type_Name,
+    s.name AS Secondary_Type_Name
+FROM
+    pokemon_trainer pt
+JOIN
+    pokemons p ON pt.pokemon_id = p.id
+JOIN
+    trainers t ON pt.trainerID = t.trainerID
+JOIN
+    types pr ON p.primary_Type = pr.id
+LEFT JOIN
+    types s ON p.secondary_type = s.id
+ORDER BY
+    pt.pokelevel DESC
+LIMIT 5;
